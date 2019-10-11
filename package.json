@@ -1,0 +1,11 @@
+{
+  "name": "vue3-reactivity",
+  "version": "1.0.0",
+  "description": "My Expreriment of Vue.js 3.0 Data-Reactivity.",
+  "main": "index.js",
+  "scripts": {
+    "dev-test": "ts-node ./test/RunTest.ts"
+  },
+  "author": "ShenQingchuan",
+  "license": "MIT"
+}
