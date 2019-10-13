@@ -1,4 +1,4 @@
-import { reactive } from "../src/reactivity";
+import { reactive } from "../../src/vue3reactivity/reactivity";
 
 // test 1
 // 测试 reactive 的基本使用
