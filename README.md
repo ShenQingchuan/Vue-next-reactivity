@@ -23,6 +23,8 @@ yarn dev-test
 
 [【珠峰架构师】从零实现Vue3.0源码中的响应式实现原理](https://www.bilibili.com/video/av70281743?from=search&seid=9995224344828633568)
 
+[【Vue 2.6.x Object.defineProperty 实现数据响应式的解析】](https://www.bilibili.com/video/av70436740/?p=30)
+
 ## 自己的思考与改动
 
 首先源教程是只采用了 Javascript 书写，并没有实际尤雨溪大大转投 Typescript 的真心。
