@@ -17,6 +17,13 @@ class Kue {
         // 数据响应化
         this.$data = options.data();
         this.observe(this.$data);
+
+        new Compiler(options.el, this);
+
+        // Life-cycle hooks:
+        if(options.created) {
+            options.created.call(this);
+        }
     }
 
     observe(target) {
@@ -25,9 +32,11 @@ class Kue {
             return;
         }
         // 遍历该对象
-        const self = this;
-        Object.keys(target).forEach(function (key) {
-            self.defineReactive(target, key, target[key]);
+        Object.keys(target).forEach((key) => {
+            this.defineReactive(target, key, target[key]);
+
+            // 代理 data 中的属性到 Kue 实例上
+            this.proxyData(key);
         });
     }
 
@@ -39,9 +48,6 @@ class Kue {
 
         Object.defineProperty(obj, key, {
             get() {
-                // 一旦发现被调用，触发 getter 就添加一个监听订阅者
-                // 接下来的代码会把自己 push 进本对象的 dep 里
-                new Watcher();
                 // && 表达式 先走左边，如果左边已经是 false 就不执行右边
                 // Dep 当前已经没有 target 则无需添加依赖
                 // 以下这是一种 Hack 写法，可以学一下：
@@ -58,6 +64,17 @@ class Kue {
                 dep.notify();
             }
         });
+    }
+
+    proxyData(key) {
+        Object.defineProperty(this, key, {
+            get() {
+                return this.$data[key];
+            },
+            set(newVal) {
+                this.$data[key] = newVal;
+            }
+        })
     }
 }
 
@@ -81,20 +98,26 @@ class Dep {
 }
 
 class Watcher {
-    constructor() {
+    constructor(vm, key, cb) {
+        this.vm = vm;
+        this.key = key;
+        this.cb = cb;
+
         // 将当前 Watcher 实例指定到 Dep 静态属性 target 上
         Dep.target = this;
+        this.vm[this.key];  // 触发 getter，添加依赖
+        Dep.target = undefined;
     }
 
     update() {
         // 其实这里实际在 Vue 框架内可能是去更新 template 的相关内容...
-        console.log("更新渲染 template ..");
+        this.cb.call(this.vm, this.vm[this.key]);
     }
 }
 
 // CommonJS 导出
-module.exports = {
-    Kue,
-    Dep,
-    Watcher,
-}
+// module.exports = {
+//     Kue,
+//     Dep,
+//     Watcher,
+// }
