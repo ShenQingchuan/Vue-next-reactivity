@@ -1,5 +1,3 @@
-const Compiler = require('./Compiler').Compiler;
-
 /**
  *  希望用户 new MyVue({
  *      data: {
@@ -118,8 +116,8 @@ class Watcher {
 }
 
 // CommonJS 导出
-module.exports = {
-    Kue,
-    Dep,
-    Watcher,
-}
+// module.exports = {
+//     Kue,
+//     Dep,
+//     Watcher,
+// }

@@ -1,6 +1,3 @@
-const Kue = require('./Kue');
-const Watcher = Kue.Watcher;
-
 class Compiler {
     constructor(el, vm) {
         // 记录要遍历的宿主节点
@@ -19,7 +16,7 @@ class Compiler {
     }
 
     // 将宿主元素内部的结构片段拿出来遍历（比较高效(?)）
-    nodeToFragment() {
+    nodeToFragment(el) {
         const fragment = document.createDocumentFragment();
         // 搬家操作：
         let child;
@@ -34,9 +31,14 @@ class Compiler {
         Array.from(childNodes).forEach(node => {
             // 节点类型判断:
             if (this.isElement(node)) {
-                
+                console.log("[Kue Compiler:] 编译元素<"+node.nodeName+">");
             } else if (this.isInterpolation(node)) {
                 this.compileInterpolation(node);
+            }
+
+            // 递归子节点
+            if (node.childNodes && node.childNodes.length > 0) {
+                this.compile(node);
             }
         });
     }
@@ -58,17 +60,18 @@ class Compiler {
         // 根据指令得到的 updateFn 来初始化
         updateFn && updateFn(node, vm[exp]);
         // 依赖收集
-        new Watcher(vm, exp, (value) => {
+        new Watcher(vm, exp, function(value) {
             updateFn && updateFn(node, value);
         });
 
     }
-    interpolationUpdateFn() {
-
+    interpolationUpdateFn(node, value) {
+        console.log("[Kue Compiler:] 更新插值表达式值...");
+        node.textContent = value;
     }
 }
 
-
-module.exports = {
-    Compiler
-}
+// CommonJS 导出
+// module.exports = {
+//     Compiler
+// }
