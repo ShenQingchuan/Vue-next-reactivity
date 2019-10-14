@@ -10,7 +10,7 @@
 
     <style>
     * {
-      font-family: 'Cascadia Code','Consolas',
+      font-family: 'Consolas',
         'Lucida Sans', 'Lucida Sans Regular',
         'Lucida Grande', 'Lucida Sans Unicode',
         Verdana, sans-serif;  
@@ -23,7 +23,16 @@
         box-shadow: 3px 3px 3px #529903;
     }
     h3 {
-        margin: 10px 10px;
+        margin: 10px;
+    }
+    button, button:visited {
+        padding: 8px;
+        margin: 10px;
+        font-size: 16px;
+        border-radius: 25px;
+        box-shadow: 3px 3px 3px goldenrod;
+        background-color: white;
+        outline: none;
     }
     </style>
 </head>
@@ -33,6 +42,10 @@
         <p>{{name}}</p>
         <h3>Kue实例 app.age:</h3>
         <p>{{age}}</p>
+        <h3>Kue 指令 k-text</h3>
+        <p k-text="Hello, Kue"></p>
+        <h3>Kue 事件绑定 - 更改age</h3>
+        <button @click="increaseAge">年龄增长</button>
     </div>
 
     <script>
@@ -48,6 +61,11 @@
                 setTimeout(()=>{
                     this.name = "hello world";
                 }, 2000);
+            },
+            methods: {
+                increaseAge() {
+                    this.age ++;
+                }
             }
         })
     </script>
