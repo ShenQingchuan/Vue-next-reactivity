@@ -115,6 +115,6 @@ class Compiler {
 }
 
 // CommonJS 导出
-// module.exports = {
-//     Compiler
-// }
+module.exports = {
+    Compiler
+}
