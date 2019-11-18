@@ -14,10 +14,10 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
-    working_directory: ~/repo/src/vue3api
+    working_directory: ~/project/src/vue3api
     steps:
       - checkout:
-        path: ~/repo
+        path: ~/project
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
