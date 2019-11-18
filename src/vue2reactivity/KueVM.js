@@ -1,5 +1,5 @@
 /**
- *  希望用户 new MyVue({
+ *  希望用户 new Kue({
  *      data: {
  *          ...
  *      }
@@ -116,8 +116,8 @@ class Watcher {
 }
 
 // CommonJS 导出
-// module.exports = {
-//     Kue,
-//     Dep,
-//     Watcher,
-// }
+module.exports = {
+    Kue,
+    Dep,
+    Watcher,
+}
