@@ -4,15 +4,16 @@
 #
 version: 2
 
-general:
-  build_dir: src/vue3api
-
 jobs:
   build:
     docker:
       - image: circleci/node:12.11.1
 
     working_directory: ~/repo
+
+    general:
+      build_dir: src/vue3api
+
     steps:
       - checkout
       - restore_cache:
