@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome to the Vue.js + TypeScript App"/>
+    <Counter msg="Welcome to the Vue.js + TypeScript App"/>
   </div>
 </template>
 
 <script lang="ts">
 import { createComponent } from '@vue/composition-api';
-import HelloWorld from './components/HelloWorld.vue';
+import Counter from './components/Counter.vue';
 
 export default createComponent({
   name: 'App',
   components: {
-    HelloWorld,
+    Counter,
   },
   setup() {
   },

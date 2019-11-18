@@ -4,7 +4,7 @@
     <h3>快来试试 Vue3 Composition API 吧!</h3>
     <br>
 
-    <h4> 这里的主要源码在: src/components/HjelloWorld.vue line 18:25 </h4>
+    <h4> 这里的主要源码在: src/components/Counter.vue line 18:25 </h4>
     <div> Hi, 我是一个计数器: {{ count }} </div>
     <button class="operation" @click="increase">很好，我+1</button>
     <button class="operation" @click="reset">哼，我要重来</button>
@@ -13,6 +13,7 @@
 </template>
 
 <script lang="ts">
+import { PropType } from 'vue';
 import { createComponent, ref } from '@vue/composition-api';
 
 function initCountHook() {
@@ -25,7 +26,7 @@ function initCountHook() {
 }
 
 export default createComponent({
-  name: 'HelloWorld',
+  name: 'Counter',
   props: {
     msg: String,
   },
