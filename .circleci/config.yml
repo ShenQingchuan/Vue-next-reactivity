@@ -10,8 +10,7 @@ jobs:
 
     working_directory: ~/repo/src/vue3api
     steps:
-      - checkout:
-        path: ~/repo/src/vue3api
+      - checkout
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
@@ -23,9 +22,3 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       # run tests!
       - run: npm unit
-
-workflows:
-  version: 2
-  run_test:
-    jobs:
-      - test
