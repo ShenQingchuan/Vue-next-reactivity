@@ -4,15 +4,9 @@
 #
 version: 2
 jobs:
-  build:
+  test:
     docker:
-      # specify the version you desire here
       - image: circleci/node:12.11.1
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
 
     working_directory: ~/project/src/vue3api
     steps:
@@ -29,3 +23,9 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       # run tests!
       - run: npm unit
+
+workflows:
+  version: 2
+  run_test:
+    jobs:
+      - test
