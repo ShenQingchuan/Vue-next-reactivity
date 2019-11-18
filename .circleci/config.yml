@@ -8,10 +8,10 @@ jobs:
     docker:
       - image: circleci/node:12.11.1
 
-    working_directory: ~/project/src/vue3api
+    working_directory: ~/repo/src/vue3api
     steps:
       - checkout:
-        path: ~/project
+        path: ~/repo/src/vue3api
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
