@@ -62,8 +62,9 @@ export function reactive(target: object) {
     }
   }
   let observed = new Proxy(target, handlers);
-  rawToReactive.set(target, observed);  // 把原对象和代理后的做个表映射
-  reactiveToRaw.set(observed, target);  // 
+  // 把原对象和代理后的对象 互相做表映射
+  rawToReactive.set(target, observed);
+  reactiveToRaw.set(observed, target);  
   return observed;
 }
 
