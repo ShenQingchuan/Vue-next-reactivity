@@ -1,7 +1,5 @@
 # 「Deprecated」我的 Vue-next3.0 实验田
 
-[请看我这个仓库！我这个仓库开始 是学习、解读和模仿 Vue-next 的实际代码](https://github.com/ShenQingchuan/Anx)
-
 ## Vue-next Reactivity 部分代码重现及理解
 
 ### 少说废话，让我先看看测试结果
